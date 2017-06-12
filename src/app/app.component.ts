@@ -1,18 +1,7 @@
-import { Component } from '@angular/core';
-import { User } from './user'
+import { Component, OnInit } from '@angular/core';
 
-const USERS: User[] = [
-  { id: 11, password: 'senha_usuario11' },
-  { id: 12, password: 'senha_usuario12' },
-  { id: 13, password: 'senha_usuario13' },
-  { id: 14, password: 'senha_usuario14' },
-  { id: 15, password: 'senha_usuario15' },
-  { id: 16, password: 'senha_usuario16' },
-  { id: 17, password: 'senha_usuario17' },
-  { id: 18, password: 'senha_usuario18' },
-  { id: 19, password: 'senha_usuario19' },
-  { id: 20, password: 'senha_usuario20' }
-];
+import { User } from './user'
+import { UserService } from './user.service';
 
 @Component({
   selector: 'my-app',
@@ -76,15 +65,27 @@ const USERS: User[] = [
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
   }
-`]
-  
+`],
+	providers: [UserService]
 })
-export class AppComponent  { 
+
+export class AppComponent implements OnInit { 
 	title = 'Prova AEB';
-	users = USERS;
+	users: User[];
 	selectedUser: User;
+
+	constructor(private userService: UserService) { }
+
+	getUsers(): void {
+		this.userService.getUsers().then(users => this.users = users);
+	}
+
+	ngOnInit(): void {
+		this.getUsers();
+	}
 
 	onSelect(user: User): void {
 		this.selectedUser = user;
 	}
 }
+
