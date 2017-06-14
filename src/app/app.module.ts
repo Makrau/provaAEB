@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent }  from './app.component';
 import { UserDetailComponent } from './user-detail.component';
+import { UserComponent } from './user.component';
+import { UserService } from './user.service';
 
 @NgModule({
   imports: [
@@ -13,11 +15,14 @@ import { UserDetailComponent } from './user-detail.component';
 
   declarations: [ 
   	AppComponent,
-  	UserDetailComponent
+  	UserDetailComponent,
+    UserComponent,
   ],
 
   bootstrap: [ 
   	AppComponent
-  ]
+  ],
+
+  providers: [UserService]
 })
 export class AppModule { }
