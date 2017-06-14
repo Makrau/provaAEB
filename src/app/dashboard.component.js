@@ -9,21 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var user_1 = require("./user");
-var UserDetailComponent = (function () {
-    function UserDetailComponent() {
+var user_service_1 = require("./user.service");
+var DashboardComponent = (function () {
+    function DashboardComponent(userService) {
+        this.userService = userService;
+        this.users = [];
     }
-    return UserDetailComponent;
+    DashboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.userService.getUsers().then(function (users) { return _this.users = users.slice(1, 5); });
+    };
+    return DashboardComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", user_1.User)
-], UserDetailComponent.prototype, "user", void 0);
-UserDetailComponent = __decorate([
+DashboardComponent = __decorate([
     core_1.Component({
-        selector: 'user-detail',
-        templateUrl: './view/user-detail.component.html'
-    })
-], UserDetailComponent);
-exports.UserDetailComponent = UserDetailComponent;
-//# sourceMappingURL=user-detail.component.js.map
+        selector: 'my-dashboard',
+        templateUrl: './view/dashboard.component.html'
+    }),
+    __metadata("design:paramtypes", [user_service_1.UserService])
+], DashboardComponent);
+exports.DashboardComponent = DashboardComponent;
+//# sourceMappingURL=dashboard.component.js.map

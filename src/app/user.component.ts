@@ -5,17 +5,7 @@ import { UserService } from './user.service';
 
 @Component({
   selector: 'my-users',
-  template: `
-  	<h2> Lista de Usuários </h2>
-  	<ul class="users">
-  		<li *ngFor="let user of users" [class.selected]="user === selectedUser" 
-  			(click)="onSelect(user)">
-  				<span class="badge">{{user.id}}</span> {{user.password}}
-  	</li>
-  </ul>
-  <user-detail [user]="selectedUser"></user-detail>
-
-  `,
+  templateUrl: './view/user.component.html',
   styles: [`
   .selected {
     background-color: #CFD8DC !important;
