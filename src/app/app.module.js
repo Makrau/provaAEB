@@ -37,6 +37,10 @@ AppModule = __decorate([
                     path: '',
                     redirectTo: '/dashboard',
                     pathMatch: 'full'
+                },
+                {
+                    path: 'detail/:id',
+                    component: user_detail_component_1.UserDetailComponent
                 }
             ])
         ],

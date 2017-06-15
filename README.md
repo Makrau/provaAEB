@@ -1,7 +1,7 @@
 # provaAEB
 Projeto utilizando Angular 4
 
-Para a realização deste projeto foi seguido o tutorial proposto pelo próprio Angular, disponível em: https://angular.io/tutorial
+Para a realização deste projeto e aprendizado de Angular, foi seguido o tutorial proposto pelo próprio Angular, disponível em: https://angular.io/tutorial
 
 Durante a execução do tutorial foram sendo realizadas adaptações para em vez de usar os "Heróis" proposto pelo tutorial, foram usados Usuários, que é o objetivo da implementação deste trabalho.
 

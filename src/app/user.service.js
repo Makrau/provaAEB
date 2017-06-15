@@ -13,6 +13,9 @@ var UserService = (function () {
     UserService.prototype.getUsers = function () {
         return Promise.resolve(mock_users_1.USERS);
     };
+    UserService.prototype.getUser = function (id) {
+        return this.getUsers().then(function (users) { return users.find(function (user) { return user.id === id; }); });
+    };
     return UserService;
 }());
 UserService = __decorate([
