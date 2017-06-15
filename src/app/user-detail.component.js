@@ -38,7 +38,8 @@ __decorate([
 UserDetailComponent = __decorate([
     core_1.Component({
         selector: 'user-detail',
-        templateUrl: './view/user-detail.component.html'
+        templateUrl: './view/user-detail.component.html',
+        styleUrls: ['./view/css/user-detail.component.css']
     }),
     __metadata("design:paramtypes", [user_service_1.UserService,
         router_1.ActivatedRoute,
