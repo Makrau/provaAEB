@@ -31,4 +31,8 @@ export class UserDetailComponent implements OnInit{
 	goBack(): void {
   	this.location.back();
 	}
+
+	save(): void {
+		this.userService.update(this.user).then(() => this.goBack());
+	}
 }

@@ -29,6 +29,9 @@ var UserComponent = (function () {
     UserComponent.prototype.gotoDetail = function () {
         this.router.navigate(['/detail', this.selectedUser.id]);
     };
+    UserComponent.prototype.register = function () {
+        this.router.navigate(['/register']);
+    };
     return UserComponent;
 }());
 UserComponent = __decorate([

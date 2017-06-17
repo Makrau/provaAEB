@@ -5,10 +5,11 @@
 	</div>
 	<div>
 		<label>Nome: </label>
-		<input [(ngModel)]="user.name" placeholder="nome"/>
+		<input [(ngModel)]="user.username" placeholder="nome"/>
 	</div>
 	<div>
 		<label>password: </label> {{user.password}}
   </div>
   <button (click)="goBack()">Voltar</button>
+  <button (click)="save()">Salvar</button>
 </div>

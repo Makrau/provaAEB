@@ -17,7 +17,7 @@ var DashboardComponent = (function () {
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.userService.getUsers().then(function (users) { return _this.users = users.slice(1, 5); });
+        this.userService.getUsers().then(function (users) { return _this.users = users.slice(0, 4); });
     };
     return DashboardComponent;
 }());

@@ -29,6 +29,10 @@ var UserDetailComponent = (function () {
     UserDetailComponent.prototype.goBack = function () {
         this.location.back();
     };
+    UserDetailComponent.prototype.save = function () {
+        var _this = this;
+        this.userService.update(this.user).then(function () { return _this.goBack(); });
+    };
     return UserDetailComponent;
 }());
 __decorate([

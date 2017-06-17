@@ -34,5 +34,9 @@ export class UserComponent implements OnInit {
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedUser.id]);
   }
+
+  register(): void {
+  	this.router.navigate(['/register']);
+  }
 }
 

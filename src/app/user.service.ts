@@ -1,15 +1,40 @@
 import { Injectable } from '@angular/core';
+import { Headers, Http } from  '@angular/http';
+
+import 'rxjs/add/operator/toPromise';
 
 import { User } from './user';
-import { USERS } from './mock-users';
 
 @Injectable()
 export class UserService {
+	private serviceUrl = 'http://csf.aeb.gov.br/user';
+	private mockUrl = 'api/users'
+	private headers = new Headers({'Content-Type': 'application/json'});
+
+	constructor(private http: Http) { }
+
 	getUsers(): Promise<User[]> {
-		return Promise.resolve(USERS);
-	}
+		return this.http.get(this.mockUrl)
+             .toPromise()
+             .then(response => response.json().data as User[])
+             .catch(this.handleError);
+}
 
 	getUser(id: number): Promise<User> {
-		return this.getUsers().then(users => users.find(user => user.id === id));
+		const url = `${this.mockUrl}/${id}`
+		return this.http.get(url).toPromise()
+			.then(response => response.json().data as User)
+			.catch(this.handleError);
+	}
+
+	update(user: User): Promise<User> {
+		const url = `${this.mockUrl}/${user.id}`;
+		return this.http.put(url, JSON.stringify(user), {headers: this.headers})
+			.toPromise().then(() => user).catch(this.handleError);
+	}
+
+	private handleError(error: any): Promise<any> {
+		console.error('An error ocurred on userService!', error);
+		return Promise.reject(error.message || error);
 	}
 }

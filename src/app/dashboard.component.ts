@@ -15,6 +15,6 @@ export class DashboardComponent implements OnInit{
 	constructor(private userService: UserService) { }
 
 	ngOnInit(): void {
-		this.userService.getUsers().then(users => this.users = users.slice(1, 5));
+		this.userService.getUsers().then(users => this.users = users.slice(0, 4));
 	}
 }
