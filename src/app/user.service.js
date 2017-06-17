@@ -14,26 +14,32 @@ require("rxjs/add/operator/toPromise");
 var UserService = (function () {
     function UserService(http) {
         this.http = http;
-        this.serviceUrl = 'http://csf.aeb.gov.br/user';
+        this.aebUrl = 'http://csf.aeb.gov.br/user';
         this.mockUrl = 'api/users';
+        this.serviceUrl = this.mockUrl; // TODO: make aebUrl works 
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     UserService.prototype.getUsers = function () {
-        return this.http.get(this.mockUrl)
+        return this.http.get(this.serviceUrl)
             .toPromise()
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
     UserService.prototype.getUser = function (id) {
-        var url = this.mockUrl + "/" + id;
+        var url = this.serviceUrl + "/" + id;
         return this.http.get(url).toPromise()
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
     UserService.prototype.update = function (user) {
-        var url = this.mockUrl + "/" + user.id;
+        var url = this.serviceUrl + "/" + user.id;
         return this.http.put(url, JSON.stringify(user), { headers: this.headers })
             .toPromise().then(function () { return user; }).catch(this.handleError);
+    };
+    UserService.prototype.create = function (username, password) {
+        return this.http.post(this.serviceUrl, JSON.stringify({ username: username, password: password }), { headers: this.headers }).toPromise()
+            .then(function (res) { return res.json().data; })
+            .catch(this.handleError);
     };
     UserService.prototype.handleError = function (error) {
         console.error('An error ocurred on userService!', error);
