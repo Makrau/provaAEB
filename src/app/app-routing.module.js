@@ -10,13 +10,13 @@ var router_1 = require("@angular/router");
 var user_detail_component_1 = require("./user-detail.component");
 var user_component_1 = require("./user.component");
 var dashboard_component_1 = require("./dashboard.component");
-var register_component_1 = require("./register.component");
+var user_form_component_1 = require("./user-form.component");
 var routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
     { path: 'detail/:id', component: user_detail_component_1.UserDetailComponent },
     { path: 'users', component: user_component_1.UserComponent },
-    { path: 'register', component: register_component_1.RegisterComponent }
+    { path: 'register', component: user_form_component_1.UserFormComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

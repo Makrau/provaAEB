@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'
 
-import { UserService } from './user.service';
 
 @Component({
-	selector: 'my-register',
-	templateUrl: './view/register.component.html',
-	styleUrls:['./view/css/register.component.css']
+  selector: 'register',
+  templateUrl: './view/register.component.html',
 })
 
 export class RegisterComponent {
-	
+	constructor(
+		private router: Router
+	) {}
+	register(): void {
+  	this.router.navigate(['/register']);
+  }
 }

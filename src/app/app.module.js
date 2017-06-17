@@ -14,6 +14,8 @@ var user_detail_component_1 = require("./user-detail.component");
 var user_component_1 = require("./user.component");
 var dashboard_component_1 = require("./dashboard.component");
 var user_service_1 = require("./user.service");
+var user_form_component_1 = require("./user-form.component");
+var register_component_1 = require("./register.component");
 var app_routing_module_1 = require("./app-routing.module");
 // Imports for loading & configuring the in-memory web api
 var angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
@@ -37,6 +39,8 @@ AppModule = __decorate([
             user_detail_component_1.UserDetailComponent,
             user_component_1.UserComponent,
             dashboard_component_1.DashboardComponent,
+            user_form_component_1.UserFormComponent,
+            register_component_1.RegisterComponent
         ],
         bootstrap: [
             app_component_1.AppComponent
