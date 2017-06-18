@@ -18,6 +18,7 @@ var UserFormComponent = (function () {
         this.router = router;
         this.submitted = false;
         this.model = new user_1.User('modelo', 'senha_modelo', 2);
+        this.valid_username = true;
     }
     UserFormComponent.prototype.onSubmit = function (username, password) {
         this.submitted = true;
@@ -28,6 +29,17 @@ var UserFormComponent = (function () {
         }
         this.userService.create(username, password);
         this.router.navigate(['/users']);
+    };
+    UserFormComponent.prototype.unique_username = function (username) {
+        var _this = this;
+        this.userService.getUsers().then(function (users) { return _this.users = users; });
+        var index;
+        for (index = 0; index < this.users.length; ++index) {
+            if (this.users[index].username === username) {
+                return false;
+            }
+        }
+        return true;
     };
     return UserFormComponent;
 }());

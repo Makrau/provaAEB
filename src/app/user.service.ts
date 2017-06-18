@@ -9,23 +9,24 @@ import { User } from './user';
 export class UserService {
 	private aebUrl = 'http://csf.aeb.gov.br/user';
 	private mockUrl = 'api/users'
-	private serviceUrl = this.mockUrl; // TODO: make aebUrl works 
+	private serviceUrl = this.aebUrl; // TODO: make aebUrl works 
 	private headers = new Headers({'Content-Type': 'application/json'});
 
 	constructor(private http: Http) { }
 	model = new User('modelo', 'senha_modelo', 2);
+	users: User[];
 
 	getUsers(): Promise<User[]> {
 		return this.http.get(this.serviceUrl)
              .toPromise()
-             .then(response => response.json().data as User[])
+             .then(response => response.json() as User[])
              .catch(this.handleError);
 }
 
 	getUser(id: number): Promise<User> {
 		const url = `${this.serviceUrl}/${id}`
 		return this.http.get(url).toPromise()
-			.then(response => response.json().data as User)
+			.then(response => response.json() as User)
 			.catch(this.handleError);
 	}
 
@@ -43,7 +44,7 @@ export class UserService {
 		return this.http.post(this.serviceUrl,
 			JSON.stringify({username: username, password: password}),
 			{headers: this.headers}).toPromise()
-		.then(res => res.json().data as User)
+		.then(res => res.json() as User)
 		.catch(this.handleError)
 	}
 
