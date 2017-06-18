@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { User } from './user';
@@ -17,6 +17,7 @@ export class UserDetailComponent implements OnInit{
 	constructor(
 		private userService: UserService,
 		private route: ActivatedRoute,
+		private router: Router,
 		private location: Location
 	) {}
 
@@ -29,10 +30,15 @@ export class UserDetailComponent implements OnInit{
 	}
 
 	goBack(): void {
-  	this.location.back();
+  	this.router.navigate(['/users']);
 	}
 
 	save(): void {
 		this.userService.update(this.user).then(() => this.goBack());
 	}
+
+	delete(user: User): void {
+  	this.userService.delete(user.id);
+  	this.goBack();
+  }
 }

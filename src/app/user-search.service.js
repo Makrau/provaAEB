@@ -9,25 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var user_service_1 = require("./user.service");
-var DashboardComponent = (function () {
-    function DashboardComponent(userService) {
-        this.userService = userService;
-        this.users = [];
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
+var UserSearchService = (function () {
+    function UserSearchService(http) {
+        this.http = http;
     }
-    DashboardComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.userService.getUsers().then(function (users) { return _this.users = users.slice(1, 5); });
+    UserSearchService.prototype.search = function (term) {
+        return this.http.get("app/users/?username=" + term)
+            .map(function (response) { return response.json().data; });
     };
-    return DashboardComponent;
+    return UserSearchService;
 }());
-DashboardComponent = __decorate([
-    core_1.Component({
-        selector: 'my-dashboard',
-        templateUrl: './view/dashboard.component.html',
-        styleUrls: ['./view/css/dashboard.component.css']
-    }),
-    __metadata("design:paramtypes", [user_service_1.UserService])
-], DashboardComponent);
-exports.DashboardComponent = DashboardComponent;
-//# sourceMappingURL=dashboard.component.js.map
+UserSearchService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], UserSearchService);
+exports.UserSearchService = UserSearchService;
+//# sourceMappingURL=user-search.service.js.map

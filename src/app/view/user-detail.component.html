@@ -8,8 +8,11 @@
 		<input [(ngModel)]="user.username" placeholder="nome"/>
 	</div>
 	<div>
-		<label>password: </label> {{user.password}}
+		<label>password: </label>
+		<input [(ngModel)]="user.password" placeholder="senha"/>
   </div>
-  <button (click)="goBack()">Voltar</button>
   <button (click)="save()">Salvar</button>
+  <button class="delete"
+		(click)="delete(user); $event.stopPropagation()">Apagar Usuario</button>
+	 <button (click)="goBack()">Voltar</button>
 </div>

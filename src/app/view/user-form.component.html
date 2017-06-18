@@ -3,13 +3,12 @@
     <form (ngSubmit)="onSubmit(username.value, password.value)" #userForm="ngForm">
       <div class="form-group">
         <label for="username">Username</label>
-        <input #username type="text" class="form-control" id="username" required name="username" #spy>
-        {{spy.className}}
+        <input #username type="text" class="form-control" id="username" required name="username"/>
       </div>
  
       <div class="form-group">
         <label for="password">Password</label>
-        <input #password type="text" class="form-control" id="password" required name="password" #spy>
+        <input #password type="text" class="form-control" id="password" required name="password"/>
       </div>
       <button type="submit" class="btn btn-success" 
       [disabled]="!userForm.form.valid">Cadastrar</button>

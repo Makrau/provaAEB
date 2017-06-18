@@ -15,9 +15,10 @@ var user_1 = require("./user");
 var user_service_1 = require("./user.service");
 require("rxjs/add/operator/switchMap");
 var UserDetailComponent = (function () {
-    function UserDetailComponent(userService, route, location) {
+    function UserDetailComponent(userService, route, router, location) {
         this.userService = userService;
         this.route = route;
+        this.router = router;
         this.location = location;
     }
     UserDetailComponent.prototype.ngOnInit = function () {
@@ -27,11 +28,15 @@ var UserDetailComponent = (function () {
             .subscribe(function (user) { return _this.user = user; });
     };
     UserDetailComponent.prototype.goBack = function () {
-        this.location.back();
+        this.router.navigate(['/users']);
     };
     UserDetailComponent.prototype.save = function () {
         var _this = this;
         this.userService.update(this.user).then(function () { return _this.goBack(); });
+    };
+    UserDetailComponent.prototype.delete = function (user) {
+        this.userService.delete(user.id);
+        this.goBack();
     };
     return UserDetailComponent;
 }());
@@ -47,6 +52,7 @@ UserDetailComponent = __decorate([
     }),
     __metadata("design:paramtypes", [user_service_1.UserService,
         router_1.ActivatedRoute,
+        router_1.Router,
         common_1.Location])
 ], UserDetailComponent);
 exports.UserDetailComponent = UserDetailComponent;

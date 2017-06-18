@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard.component';
 import { UserService } from './user.service';
 import { UserFormComponent } from './user-form.component';
 import { RegisterComponent} from './register.component';
+import { UserSearchComponent } from './user-search.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -25,7 +26,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
   	FormsModule,
     AppRoutingModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService)
+    InMemoryWebApiModule.forRoot(InMemoryDataService, {passThruUnknownUrl: true})
   ],
 
   declarations: [ 
@@ -34,7 +35,8 @@ import { InMemoryDataService }  from './in-memory-data.service';
     UserComponent,
     DashboardComponent,
     UserFormComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserSearchComponent
   ],
 
   bootstrap: [ 

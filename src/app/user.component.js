@@ -27,7 +27,7 @@ var UserComponent = (function () {
         this.selectedUser = user;
     };
     UserComponent.prototype.gotoDetail = function () {
-        this.router.navigate(['/detail', this.selectedUser.id]);
+        this.router.navigate(['/user', this.selectedUser.id]);
     };
     return UserComponent;
 }());

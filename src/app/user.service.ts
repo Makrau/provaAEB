@@ -13,6 +13,7 @@ export class UserService {
 	private headers = new Headers({'Content-Type': 'application/json'});
 
 	constructor(private http: Http) { }
+	model = new User('modelo', 'senha_modelo', 2);
 
 	getUsers(): Promise<User[]> {
 		return this.http.get(this.serviceUrl)
@@ -34,12 +35,27 @@ export class UserService {
 			.toPromise().then(() => user).catch(this.handleError);
 	}
 
+	update_default(): Promise<User> {
+		return this.update(this.model);
+	}
+
 	create(username: string, password: string): Promise<User> {
 		return this.http.post(this.serviceUrl,
 			JSON.stringify({username: username, password: password}),
 			{headers: this.headers}).toPromise()
 		.then(res => res.json().data as User)
 		.catch(this.handleError)
+	}
+
+	delete(id: number): Promise<void> {
+		const url = `${this.serviceUrl}/${id}`;
+
+		return this.http.delete(url, {headers: this.headers}).toPromise()
+			.then(() => null).catch(this.handleError);
+	}
+
+	delete_default(): Promise<void> {
+		return this.delete(this.model.id);
 	}
 
 	private handleError(error: any): Promise<any> {

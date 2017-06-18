@@ -16,6 +16,7 @@ var dashboard_component_1 = require("./dashboard.component");
 var user_service_1 = require("./user.service");
 var user_form_component_1 = require("./user-form.component");
 var register_component_1 = require("./register.component");
+var user_search_component_1 = require("./user-search.component");
 var app_routing_module_1 = require("./app-routing.module");
 // Imports for loading & configuring the in-memory web api
 var angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
@@ -32,7 +33,7 @@ AppModule = __decorate([
             forms_1.FormsModule,
             app_routing_module_1.AppRoutingModule,
             http_1.HttpModule,
-            angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService)
+            angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService, { passThruUnknownUrl: true })
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -40,7 +41,8 @@ AppModule = __decorate([
             user_component_1.UserComponent,
             dashboard_component_1.DashboardComponent,
             user_form_component_1.UserFormComponent,
-            register_component_1.RegisterComponent
+            register_component_1.RegisterComponent,
+            user_search_component_1.UserSearchComponent
         ],
         bootstrap: [
             app_component_1.AppComponent

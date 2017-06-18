@@ -9,7 +9,7 @@ import { UserFormComponent } from './user-form.component';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard',  component: DashboardComponent },
-  { path: 'detail/:id', component:UserDetailComponent },
+  { path: 'user/:id', component:UserDetailComponent },
   { path: 'users',     component: UserComponent },
  	{ path: 'register', component: UserFormComponent }
 ];

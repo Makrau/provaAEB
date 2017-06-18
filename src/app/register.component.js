@@ -10,12 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var user_service_1 = require("./user.service");
 var RegisterComponent = (function () {
-    function RegisterComponent(router) {
+    function RegisterComponent(router, userService) {
         this.router = router;
+        this.userService = userService;
     }
     RegisterComponent.prototype.register = function () {
         this.router.navigate(['/register']);
+    };
+    RegisterComponent.prototype.update_default = function () {
+        this.userService.update_default();
+    };
+    RegisterComponent.prototype.delete_default = function () {
+        this.userService.delete_default();
     };
     return RegisterComponent;
 }());
@@ -24,7 +32,8 @@ RegisterComponent = __decorate([
         selector: 'register',
         templateUrl: './view/register.component.html',
     }),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [router_1.Router,
+        user_service_1.UserService])
 ], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 //# sourceMappingURL=register.component.js.map

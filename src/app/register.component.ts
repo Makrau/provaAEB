@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router'
 
+import { UserService } from './user.service';
+
 
 @Component({
   selector: 'register',
@@ -9,9 +11,18 @@ import { Router } from '@angular/router'
 
 export class RegisterComponent {
 	constructor(
-		private router: Router
+		private router: Router,
+		private userService: UserService
 	) {}
 	register(): void {
   	this.router.navigate(['/register']);
+  }
+
+  update_default(): void {
+  	this.userService.update_default();
+  }
+
+  delete_default(): void {
+    this.userService.delete_default();
   }
 }

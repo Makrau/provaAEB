@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
+var user_1 = require("./user");
 var UserService = (function () {
     function UserService(http) {
         this.http = http;
@@ -18,6 +19,7 @@ var UserService = (function () {
         this.mockUrl = 'api/users';
         this.serviceUrl = this.mockUrl; // TODO: make aebUrl works 
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.model = new user_1.User('modelo', 'senha_modelo', 2);
     }
     UserService.prototype.getUsers = function () {
         return this.http.get(this.serviceUrl)
@@ -36,10 +38,21 @@ var UserService = (function () {
         return this.http.put(url, JSON.stringify(user), { headers: this.headers })
             .toPromise().then(function () { return user; }).catch(this.handleError);
     };
+    UserService.prototype.update_default = function () {
+        return this.update(this.model);
+    };
     UserService.prototype.create = function (username, password) {
         return this.http.post(this.serviceUrl, JSON.stringify({ username: username, password: password }), { headers: this.headers }).toPromise()
             .then(function (res) { return res.json().data; })
             .catch(this.handleError);
+    };
+    UserService.prototype.delete = function (id) {
+        var url = this.serviceUrl + "/" + id;
+        return this.http.delete(url, { headers: this.headers }).toPromise()
+            .then(function () { return null; }).catch(this.handleError);
+    };
+    UserService.prototype.delete_default = function () {
+        return this.delete(this.model.id);
     };
     UserService.prototype.handleError = function (error) {
         console.error('An error ocurred on userService!', error);
