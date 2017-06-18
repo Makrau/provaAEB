@@ -17,20 +17,20 @@ var UserService = (function () {
         this.http = http;
         this.aebUrl = 'http://csf.aeb.gov.br/user';
         this.mockUrl = 'api/users';
-        this.serviceUrl = this.aebUrl; // TODO: make aebUrl works 
+        this.serviceUrl = this.mockUrl; // TODO: make aebUrl works 
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.model = new user_1.User('modelo', 'senha_modelo', 2);
     }
     UserService.prototype.getUsers = function () {
         return this.http.get(this.serviceUrl)
             .toPromise()
-            .then(function (response) { return response.json(); })
+            .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
     UserService.prototype.getUser = function (id) {
         var url = this.serviceUrl + "/" + id;
         return this.http.get(url).toPromise()
-            .then(function (response) { return response.json(); })
+            .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
     UserService.prototype.update = function (user) {
@@ -43,7 +43,7 @@ var UserService = (function () {
     };
     UserService.prototype.create = function (username, password) {
         return this.http.post(this.serviceUrl, JSON.stringify({ username: username, password: password }), { headers: this.headers }).toPromise()
-            .then(function (res) { return res.json(); })
+            .then(function (res) { return res.json().data; })
             .catch(this.handleError);
     };
     UserService.prototype.delete = function (id) {
